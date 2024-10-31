@@ -1,0 +1,65 @@
+/* Ensure body and html take full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#sidebar-left {
+    width: 100px;                     /* Set the width of the sidebar */
+    height: 100vh;                    /* Full height of the viewport */
+    background-color: #f4f4f4;        /* Light gray background color */
+    padding: 20px;                    /* Padding inside the sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on the right */
+    position: fixed;                  /* Fix the sidebar to the left */
+    top: 0;                           /* Align to the top of the viewport */
+    left: 0;                          /* Align to the left of the viewport */
+    display: flex;           /* Enable flexbox layout */
+    flex-direction: column;  /* Arrange items in a column */
+    
+}
+
+.sidebar-content {
+    margin-top: 20px;                 /* Spacing between the logo and content */
+    text-align: center;               /* Center text within sidebar content */
+    overflow-y: auto;                 /* Enable scrolling if content overflows */
+    gap: 20;
+}
+
+/* Optional: Style for images */
+#sidebar-left img {
+    width: 90%;                       /* Make the image responsive */
+    height: auto;                     /* Maintain aspect ratio */
+    margin-bottom: 20px;
+}
+
+#btn {
+    width: 100px;                      /* Set a fixed width for the button */
+    height: 100px;                     /* Set a fixed height for the button */
+    background-color: #C51E3A;        /* Set the background color */
+    border-radius: 10px;              /* Rounded corners */
+    border: none;                     /* Remove border (outline) */
+    display: flex;                    /* Use flexbox for layout */
+    flex-direction: column;           /* Stack items vertically */
+    align-items: center;              /* Center content horizontally */
+    justify-content: center;          /* Center content vertically */
+    color: white;                     /* Optional: Set text color */
+    overflow: hidden;                 /* Prevent overflow of children */
+    text-align: center;               /* Center text within the button */
+}
+
+
+/* Style for text elements inside the button */
+#btn h1 {
+    margin: 0;                       /* Remove default margin */
+    padding: 0;                      /* Remove default padding */
+    font-size: 30px;                 /* Set a new font size for the h1 */
+    line-height: 1.2;                /* Control line height for better spacing */
+}
+
+#btn p {
+    margin: 0;                       /* Remove default margin */
+    padding: 0;                      /* Remove default padding */
+    font-size: 12px;                 /* Keep the font size for the paragraph */
+    line-height: 1.2;                /* Control line height for better spacing */
+}

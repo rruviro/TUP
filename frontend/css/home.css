@@ -1,0 +1,135 @@
+/* Ensure body and html take full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Image container styles */
+#backgroundImage {
+    width: 40%;  /* 30% width */
+    height: 100%; /* Full height */
+    overflow: hidden; 
+    position: fixed; /* Fixed to the viewport */
+    top: 0;
+    left: 0;
+}
+
+/* Image styling */
+#backgroundImage img {
+    width: 100%;   /* Full width */
+    height: 100%;  /* Full height */
+    object-fit: cover; /* Maintain aspect ratio and cover */
+}
+
+.colorOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* Red color with 50% opacity */
+    pointer-events: none; /* Prevents interaction with the overlay */
+}
+
+.centerImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px; /* Set your desired width */
+    height: 200px; /* Set your desired height */size: 50px;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Prevents interaction with overlay image */
+}
+
+#actions {
+    position: absolute;
+    right: 20px;                /* Keep the right spacing */
+    top: 50%;                   /* Start from the top 50% */
+    width: 60%;                 /* Adjust width as needed */
+    height: 80%;                /* Set height as needed */
+    background-color: transparent;
+    transform: translateY(-50%); /* Center the div vertically */
+    display: flex;              /* Use flexbox for layout */
+    flex-direction: row;        /* Set items to arrange in a row */
+    align-items: center;        /* Center items vertically */
+    gap: 20px;                  /* Optional: Adds space between items */
+}
+
+#actions .directory {
+    height: 100%;            /* Ensure that inner div takes full height */
+    width: 30%;              /* Set the width of the button */
+    background-color: #C51E3A; /* Set the background color */
+    display: flex;           /* Use flexbox for layout */
+    border-radius: 10px;     /* Rounded corners */
+    border: none;            /* Remove border (outline) */
+    transition: transform 0.2s, background-color 0.2s; /* Smooth transition */
+    flex-direction: column;  /* Stack items vertically */
+    align-items: center;      /* Center content horizontally */
+    color: white;            /* Optional: Set text color */
+    padding: 2%;             /* Add internal margin of 5% */
+    box-sizing: border-box;  /* Ensure padding doesn't affect width/height */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+}
+
+#actions .directory div p {
+    color: white;
+    font-size: x-small;
+    margin: 0;               /* Remove default margin that might cause clipping */
+    padding: 0;              /* Remove any padding to prevent clipping */
+    text-align: center;      /* Center text for better alignment */
+}
+
+#actions #actionColumn {
+    background-color: transparent;
+    height: 100%;            /* Ensure that inner div takes full height */
+    width: 65%;              /* Set the width of the action column */
+    display: flex;           /* Enable flexbox layout */
+    flex-direction: column;  /* Arrange items in a column */
+}
+
+/* Using margins for spacing */
+#actionColumn > * {
+    margin-bottom: 20px;    /* Add bottom margin to all direct children */
+}
+
+#actionColumn > *:last-child {
+    margin-bottom: 0;       /* Remove margin from the last child */
+}
+
+
+#actionColumn .item2 {
+    height: 50%;            /* Ensure that inner div takes full height */
+    width: 100%;              /* Set the width of the button */
+    background-color: white; /* Set the background color */
+    display: flex;           /* Use flexbox for layout */
+    border-radius: 10px;     /* Rounded corners */
+    border: none;            /* Remove border (outline) */
+    transition: transform 0.2s, background-color 0.2s; /* Smooth transition */
+    flex-direction: column;  /* Stack items vertically */
+    align-items: center;      /* Center content horizontally */
+    color: white;            /* Optional: Set text color */
+    padding: 2%;             /* Add internal margin of 5% */
+    box-sizing: border-box;  /* Ensure padding doesn't affect width/height */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+}
+
+#actionColumn .item2 h1 {
+    color: black; /* Set the color of the h1 text to black */
+}
+
+#actionColumn .item2 .indicator p { /* Corrected selector to target p inside the indicator */
+    color: black; /* Set the color of the paragraph text to red */
+    width: 70%;
+    margin: 0 auto;      /* Auto margin for centering */
+}
+
+
+#actions .directory:active {
+    transform: scale(0.95);  /* Scale down slightly when clicked */
+    background-color: #A61B30; /* Darker shade on click for feedback */
+}
+
+#actionColumn .item2:active {
+    transform: scale(0.95);  /* Scale down slightly when clicked */
+}
