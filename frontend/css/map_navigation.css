@@ -3,6 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Inter', sans-serif;
 }
 
 #sidebar-left {
@@ -16,14 +17,15 @@ html, body {
     left: 0;                          /* Align to the left of the viewport */
     display: flex;           /* Enable flexbox layout */
     flex-direction: column;  /* Arrange items in a column */
-    
 }
 
-.sidebar-content {
-    margin-top: 20px;                 /* Spacing between the logo and content */
-    text-align: center;               /* Center text within sidebar content */
-    overflow-y: auto;                 /* Enable scrolling if content overflows */
-    gap: 20;
+.sidebar-content-left {
+    margin-top: 20px;
+    text-align: center;
+    overflow-y: auto;
+    display: flex;              /* Enable Flexbox */
+    flex-direction: column;     /* Arrange items vertically */
+    gap: 10px;                  /* Vertical spacing between items */
 }
 
 /* Optional: Style for images */
@@ -62,4 +64,59 @@ html, body {
     padding: 0;                      /* Remove default padding */
     font-size: 12px;                 /* Keep the font size for the paragraph */
     line-height: 1.2;                /* Control line height for better spacing */
+}
+
+
+
+
+
+#sidebar-right {
+    width: 250px;                     /* Set the width of the sidebar */
+    height: 100vh;                    /* Full height of the viewport */
+    background-color: #C51E3A;        /* Light gray background color */
+    padding: 20px;                    /* Padding inside the sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on the right */
+    position: fixed;                  /* Fix the sidebar to the left */
+    top: 0;                           /* Align to the top of the viewport */
+    right: 0;                          /* Align to the left of the viewport */
+    display: flex;           /* Enable flexbox layout */
+    flex-direction: column;  /* Arrange items in a column */
+}
+
+.sidebar-content-right #top-navigation {
+    width: auto;
+    height: auto;
+    flex-direction: row;           /* Stack items vertically */
+}
+
+#top-navigation button {
+    width: 30px;                      /* Set a fixed width for the button */
+    height: 30px;                     /* Set a fixed height for the button */
+    background-color: white;        /* Set the background color */
+    border-radius: 2px;              /* Rounded corners */
+    border: none;                     /* Remove border (outline) */
+    color: #C51E3A;                     /* Optional: Set text color */
+    text-align: center;               /* Center text within the button */
+}
+
+#top-navigation #unknown {
+    position: absolute;
+    right: 50px;
+}
+
+#top-navigation #home {
+    position: absolute;
+    right: 10px;
+}
+
+/* Style for the curved input field */
+.curved-input {
+    margin-top: 20px;
+    width: 91%;
+    padding: 10px 15px;      /* Padding inside the input */
+    border-radius: 20px;     /* Rounded corners */
+    border: 1px solid white;  /* Light gray border */
+    outline: none;           /* Remove outline on focus */
+    font-size: 13px;         /* Font size */
+    transition: border-color 0.3s; /* Smooth transition for focus effect */
 }

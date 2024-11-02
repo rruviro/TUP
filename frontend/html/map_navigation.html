@@ -5,17 +5,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Map Navigation</title>
-        <link rel="stylesheet" href="file://C:/Users/Louise/Documents/TUP/frontend/css/map_navigation.css">
+        <link rel="stylesheet" href="../css/map_navigation.css">
+        <link rel="stylesheet" href="../css/transation.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     </head>
 
-    <body>
+    <body class="fade-in">
 
         <div id="sidebar-left">
             <!-- Uncomment the following line to display the logo -->
             <!-- <img src="file://C:/Users/Louise/Documents/TUP/frontend/images/364-3646121_technological-university-of-the-philippines-logo.png" alt="TUP Logo"> -->
-            <div class="sidebar-content">
-                <img src="file://C:/Users/Louise/Documents/TUP/frontend/images/364-3646121_technological-university-of-the-philippines-logo.png">
+            <div class="sidebar-content-left">
+                <img src="../images/364-3646121_technological-university-of-the-philippines-logo.png">
                 
+                <button id="btn">
+                    <h1>4th</h1>
+                    <p>floor</p>
+                </button>
+
                 <button id="btn">
                     <h1>4th</h1>
                     <p>floor</p>
@@ -35,7 +43,32 @@
 
         </div>
         
+        <div id="sidebar-right">
+            <div class="sidebar-content-right">
+                <div id="top-navigation">
+
+                    <button id="hide">
+                        <span class="material-icons" style="font-size: 20px;">arrow_forward</span>
+                    </button>
+
+                    <button id="unknown">
+                        <span class="material-icons" style="font-size: 20px;">help</span>
+                    </button>
+
+                    <button id="home" onclick="navigateWithFade('home.html')">
+                        <span class="material-icons" style="font-size: 20px;">home</span>
+                    </button>
+
+                    <input type="text" class="curved-input" placeholder="Enter your text here">
+
+                </div>
+
+                <p style="font-size: 13px; color: white;">Available Rooms</h1>
+
+            </div>
+        </div>
         
+    <script src="../backend/js/transation.js"></script> <!-- Link to JavaScript file -->
     </body>
 
 </html>
