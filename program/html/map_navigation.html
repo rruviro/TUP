@@ -46,28 +46,67 @@
         <div id="sidebar-right">
             <div class="sidebar-content-right">
                 <div id="top-navigation">
-
                     <button id="hide">
                         <span class="material-icons" style="font-size: 20px;">arrow_forward</span>
                     </button>
-
-                    <button id="unknown">
+                    <button id="unknown" onclick="addItem()">
                         <span class="material-icons" style="font-size: 20px;">help</span>
                     </button>
-
                     <button id="home" onclick="navigateWithFade('home.html')">
                         <span class="material-icons" style="font-size: 20px;">home</span>
                     </button>
-
                     <input type="text" class="curved-input" placeholder="Enter your text here">
-
                 </div>
-
-                <p style="font-size: 13px; color: white;">Available Rooms</h1>
-
+        
+                <p style="font-size: 13px; color: white;">Buildings</p>
+                
+                <div id="building-btn">
+                    <button>
+                        <div class="building-btn-content">
+                            <div id="building-btn-icon">
+                                <h1>CG</h1>
+                            </div>
+                            <div id="identity">
+                                <h1>Cross Guild</h1>
+                                <p>testing</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+        
+                <p style="font-size: 13px; color: white;">Available Rooms</p>
+                
+                <div id="building-btn">
+                    <button>
+                        <div class="building-btn-content">
+                            <div id="building-btn-icon">
+                                <h1>CG</h1>
+                            </div>
+                            <div id="identity">
+                                <h1>Cross Guild</h1>
+                                <p>testing</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
             </div>
+            
+            <button id="show" class="styled-button">
+                <span class="material-icons">preview</span>
+            </button>
+
+            <button id="uunknown" class="styled-button" onclick="addItem()">
+                <span class="material-icons" style="font-size: 20px;">help</span>
+            </button>
+
+            <button id="lhome" class="styled-button" onclick="navigateWithFade('home.html')">
+                <span class="material-icons" style="font-size: 20px;">home</span>
+            </button>
+
         </div>
         
+        
+    <script src="../js/map_navigation.js"></script> <!-- Link to JavaScript file -->
     <script src="../js/transation.js"></script> <!-- Link to JavaScript file -->
     </body>
 
