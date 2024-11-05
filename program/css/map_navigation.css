@@ -1,5 +1,6 @@
 /* Ensure body and html take full height */
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     height: 100%;
@@ -7,135 +8,130 @@ html, body {
 }
 
 #sidebar-left {
-    width: 70px;                     /* Set the width of the sidebar */
-    height: 100vh;                    /* Full height of the viewport */
-    background-color: #f4f4f4;        /* Light gray background color */
-    padding: 20px;                    /* Padding inside the sidebar */
+    width: 70px; /* Set the width of the sidebar */
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f4f4f4; /* Light gray background color */
+    padding: 20px; /* Padding inside the sidebar */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on the right */
-    position: fixed;                  /* Fix the sidebar to the left */
-    top: 0;                           /* Align to the top of the viewport */
-    left: 0;                          /* Align to the left of the viewport */
-    display: flex;           /* Enable flexbox layout */
-    flex-direction: column;  /* Arrange items in a column */
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    display: flex; /* Enable flexbox layout */
+    flex-direction: column; /* Arrange items in a column */
 }
 
 .sidebar-content-left {
     margin-top: 20px;
     text-align: center;
     overflow-y: auto;
-    display: flex;              /* Enable Flexbox */
-    flex-direction: column;     /* Arrange items vertically */
-    gap: 10px;                  /* Vertical spacing between items */
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Arrange items vertically */
+    gap: 10px; /* Vertical spacing between items */
 }
 
 /* Optional: Style for images */
 #sidebar-left img {
-    width: 100%;                       /* Make the image responsive */
-    height: auto;                     /* Maintain aspect ratio */
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
     margin-bottom: 20px;
 }
 
 #btn {
-    width: 70px;                      /* Set a fixed width for the button */
-    height: 70px;                     /* Set a fixed height for the button */
-    background-color: #C51E3A;        /* Set the background color */
-    border-radius: 10px;              /* Rounded corners */
-    border: none;                     /* Remove border (outline) */
-    display: flex;                    /* Use flexbox for layout */
-    flex-direction: column;           /* Stack items vertically */
-    align-items: center;              /* Center content horizontally */
-    justify-content: center;          /* Center content vertically */
-    color: white;                     /* Optional: Set text color */
-    overflow: hidden;                 /* Prevent overflow of children */
-    text-align: center;               /* Center text within the button */
+    width: 70px; /* Set a fixed width for the button */
+    height: 70px; /* Set a fixed height for the button */
+    background-color: #c51e3a; /* Set the background color */
+    border-radius: 10px; /* Rounded corners */
+    border: none; /* Remove border (outline) */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    color: white; /* Optional: Set text color */
+    overflow: hidden; /* Prevent overflow of children */
+    text-align: center; /* Center text within the button */
 }
-
 
 /* Style for text elements inside the button */
 #btn h1 {
-    margin: 0;                       /* Remove default margin */
-    padding: 0;                      /* Remove default padding */
-    font-size: 30px;                 /* Set a new font size for the h1 */
-    line-height: 1.2;                /* Control line height for better spacing */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 30px; /* Set a new font size for the h1 */
+    line-height: 1.2; /* Control line height for better spacing */
 }
 
 #btn p {
-    margin: 0;                       /* Remove default margin */
-    padding: 0;                      /* Remove default padding */
-    font-size: 12px;                 /* Keep the font size for the paragraph */
-    line-height: 1.2;                /* Control line height for better spacing */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-size: 12px; /* Keep the font size for the paragraph */
+    line-height: 1.2; /* Control line height for better spacing */
 }
 
-
-
-
 #sidebar-right {
-    width: 250px;                     /* Set the width of the sidebar */
-    height: 100vh;                    /* Full height of the viewport */
-    background-color: #C51E3A;        /* Light gray background color */
-    padding: 20px;                    /* Padding inside the sidebar */
+    width: 250px; /* Set the width of the sidebar */
+    height: 100vh; /* Full height of the viewport */
+    background-color: #c51e3a; /* Light gray background color */
+    padding: 20px; /* Padding inside the sidebar */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow on the right */
-    position: fixed;                  /* Fix the sidebar to the left */
-    top: 0;                           /* Align to the top of the viewport */
-    right: 0;                          /* Align to the left of the viewport */
-    display: flex;           /* Enable flexbox layout */
-    flex-direction: column;  /* Arrange items in a column */
+    position: fixed; /* Fix the sidebar to the left */
+    top: 0; /* Align to the top of the viewport */
+    right: 0; /* Align to the left of the viewport */
+    display: flex; /* Enable flexbox layout */
+    flex-direction: column; /* Arrange items in a column */
     transition: width 0.3s ease; /* Smooth transition for width change */
 }
 
 /* Style for the button */
 .styled-button {
-    display: flex;                     /* Use flexbox for alignment */
-    align-items: center;              /* Center items vertically */
-    justify-content: center;          /* Center items horizontally */
-    width: auto;                      /* Set width to auto to fit content */
-    height: auto;                     /* Set height to auto to fit content */
-     width: 30px;                      /* Set a fixed width for the button */
-    height: 30px;                     /* Set a fixed height for the button */
-    padding: 5px;                     /* Add padding for better click area */
-    background-color: white;          /* Set the background color */
-    border-radius: 2px;               /* Rounded corners */
-    border: none;                     /* Remove border (outline) */
-    color: #C51E3A;                   /* Optional: Set text color */
-    cursor: pointer;                  /* Pointer cursor on hover */
-    outline: none;                    /* Remove outline */
-    overflow: hidden;                 /* Hide overflow */
-    margin-bottom: 10px;               /* Add a right margin for gap */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    width: auto; /* Set width to auto to fit content */
+    height: auto; /* Set height to auto to fit content */
+    width: 30px; /* Set a fixed width for the button */
+    height: 30px; /* Set a fixed height for the button */
+    padding: 5px; /* Add padding for better click area */
+    background-color: white; /* Set the background color */
+    border-radius: 2px; /* Rounded corners */
+    border: none; /* Remove border (outline) */
+    color: #c51e3a; /* Optional: Set text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    outline: none; /* Remove outline */
+    overflow: hidden; /* Hide overflow */
+    margin-bottom: 10px; /* Add a right margin for gap */
     transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
 }
 
 .styled-button:hover {
-    background-color: #f0f0f0;        /* Optional: Light gray on hover */
-    transform: scale(1.05);           /* Slightly enlarge on hover */
+    background-color: #f0f0f0; /* Optional: Light gray on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .styled-button:active {
-    transform: scale(1.0);             /* Prevent size change when pressed */
+    transform: scale(1); /* Prevent size change when pressed */
 }
 
 /* Style for the icon */
 .styled-button .material-icons {
-    font-size: 20px;                  /* Set a consistent font size */
-    margin: 0;                        /* Ensure no margin around the icon */
+    font-size: 20px; /* Set a consistent font size */
+    margin: 0; /* Ensure no margin around the icon */
 }
 
 /* Optional: Style for disabled state */
 .styled-button:disabled {
-    background-color: #ccc;           /* Light gray background for disabled */
-    color: #666;                      /* Dark gray text for disabled */
-    cursor: not-allowed;              /* Not allowed cursor */
+    background-color: #ccc; /* Light gray background for disabled */
+    color: #666; /* Dark gray text for disabled */
+    cursor: not-allowed; /* Not allowed cursor */
 }
-
 
 .button-text {
-    font-size: 16px;                  /* Adjust text size */
+    font-size: 16px; /* Adjust text size */
 }
 
 /* Optional: Style for disabled state */
 .styled-button:disabled {
-    background-color: #ccc;           /* Light gray background for disabled */
-    color: #666;                      /* Dark gray text for disabled */
-    cursor: not-allowed;              /* Not allowed cursor */
+    background-color: #ccc; /* Light gray background for disabled */
+    color: #666; /* Dark gray text for disabled */
+    cursor: not-allowed; /* Not allowed cursor */
 }
 
 #sidebar-right.hidden {
@@ -150,31 +146,30 @@ html, body {
 .sidebar-content-right #top-navigation {
     width: auto;
     height: auto;
-    flex-direction: row;           /* Stack items vertically */
+    flex-direction: row; /* Stack items vertically */
 }
 
 #top-navigation button {
-    align-items: center;              /* Center items vertically */
-    justify-content: center;          /* Center items horizontally */
-    width: 30px;                      /* Set a fixed width for the button */
-    height: 30px;                     /* Set a fixed height for the button */
-    background-color: white;          /* Set the background color */
-    border-radius: 2px;               /* Rounded corners */
-    border: none;                     /* Remove border (outline) */
-    color: #C51E3A;                   /* Optional: Set text color */
-    cursor: pointer;                  /* Pointer cursor on hover */
-    outline: none;                    /* Remove outline */
-    overflow: hidden;                 /* Hide overflow */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    width: 30px; /* Set a fixed width for the button */
+    height: 30px; /* Set a fixed height for the button */
+    background-color: white; /* Set the background color */
+    border-radius: 2px; /* Rounded corners */
+    border: none; /* Remove border (outline) */
+    color: #c51e3a; /* Optional: Set text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    outline: none; /* Remove outline */
+    overflow: hidden; /* Hide overflow */
     transition: background-color 0.2s ease; /* Smooth background transition */
 }
 
-
-#building-btn button:active {
-    background-color: #A51A32; /* Darker color on press */
+.building-btn button:active {
+    background-color: #a51a32; /* Darker color on press */
 }
 
-#building-btn button:active::after {
-    content: ''; 
+.building-btn button:active::after {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -185,7 +180,6 @@ html, body {
     transform: translate(-50%, -50%) scale(0); /* Start from center */
     animation: pulse 0.5s ease-out forwards; /* Pulse animation */
 }
-
 
 #top-navigation #unknown {
     position: absolute;
@@ -201,27 +195,27 @@ html, body {
 .curved-input {
     margin-top: 20px;
     width: 91%;
-    padding: 10px 15px;      /* Padding inside the input */
-    border-radius: 20px;     /* Rounded corners */
-    border: 1px solid white;  /* Light gray border */
-    outline: none;           /* Remove outline on focus */
-    font-size: 13px;         /* Font size */
+    padding: 10px 15px; /* Padding inside the input */
+    border-radius: 20px; /* Rounded corners */
+    border: 1px solid white; /* Light gray border */
+    outline: none; /* Remove outline on focus */
+    font-size: 13px; /* Font size */
     transition: border-color 0.3s; /* Smooth transition for focus effect */
 }
 
-#building-btn button {
+.building-btn button {
     width: 100%;
     height: 40px;
     background-color: transparent;
-    border: none;                     /* Remove border (outline) */
+    border: none; /* Remove border (outline) */
 }
 .building-btn-content {
     display: flex;
     flex-direction: row;
-    align-items: center;            /* Center items vertically within the row */
+    align-items: center; /* Center items vertically within the row */
 }
 
-.building-btn-content #building-btn-icon {
+.building-btn-content .building-btn-icon {
     margin-left: -5px;
     height: 40px;
     width: 50px;
@@ -233,29 +227,29 @@ html, body {
     text-align: center;
 }
 
-#building-btn-icon h1 {
-    color: #C51E3A;
+.building-btn-icon h1 {
+    color: #c51e3a;
     font-size: 17px;
 }
 
-.building-btn-content #identity {
+.building-btn-content .identity {
     width: 100%;
     margin-left: 10px;
     background-color: transparent;
     display: flex;
     flex-direction: column;
-    justify-content: center;         /* Center h1 and p vertically within the column */
+    justify-content: center; /* Center h1 and p vertically within the column */
     color: white;
     text-align: start;
 }
 
-#identity h1 {
+.identity h1 {
     margin: 0;
     padding: 0;
     font-size: 15px;
 }
 
-#identity p {
+.identity p {
     margin: 0;
     padding: 0;
     font-size: 13px;
