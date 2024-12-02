@@ -65,11 +65,13 @@ html, body {
     border: none;            /* Remove border (outline) */
     transition: transform 0.2s, background-color 0.2s; /* Smooth transition */
     flex-direction: column;  /* Stack items vertically */
-    align-items: center;      /* Center content horizontally */
+    align-items: center;     /* Center content horizontally */
     color: white;            /* Optional: Set text color */
-    padding: 2%;             /* Add internal margin of 5% */
+    padding: 2%;             /* Add internal margin */
     box-sizing: border-box;  /* Ensure padding doesn't affect width/height */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+    overflow: hidden;        /* Clip content that overflows the button */
+    position: relative;      /* Establish a positioning context for children */
 }
 
 #actions .directory div p {
@@ -112,6 +114,8 @@ html, body {
     padding: 2%;             /* Add internal margin of 5% */
     box-sizing: border-box;  /* Ensure padding doesn't affect width/height */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+    overflow: hidden;        /* Clip content that overflows the button */
+    position: relative;      /* Establish a positioning context for children */
 }
 
 #actionColumn .item2 h1 {
