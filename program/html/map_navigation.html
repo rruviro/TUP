@@ -9,6 +9,41 @@
         <link rel="stylesheet" href="../css/transation.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+        <style>
+            .tree {
+                color: white;
+                list-style-type: none;
+                padding-left: 20px;
+            }
+            .tree-item {
+                cursor: pointer;
+                margin-bottom: 5px;
+            }
+            .tree-item .icon {
+            margin-right: 8px;
+        }
+        .tree-item .nested {
+            display: none;
+            margin-left: 20px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .tree-item.open > .nested {
+            display: block;
+        }
+            .room-button {
+                margin: 5px 0;
+                padding: 5px 10px;
+                border: none;
+                background-color: #d9534f;
+                color: #fff;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .room-button:hover {
+                background-color: #c9302c;
+            }
+        </style>
     </head>
 
     <body class="fade-in">
@@ -53,35 +88,8 @@
         
                 <p style="font-size: 13px; color: white;">Buildings</p>
                 
-                <div class="building-btn">
-                    <button>
-                        <div class="building-btn-content">
-                            <div class="building-btn-icon">
-                                <h1>CG</h1>
-                            </div>
-                            <div class="identity">
-                                <h1>Cross Guild</h1>
-                                <p>testing</p>
-                            </div>
-                        </div>
-                    </button>
-                </div>
+                <ul id="buildings-tree" class="tree"></ul>
         
-                <p style="font-size: 13px; color: white;">Available Rooms</p>
-                
-                <div class="building-btn">
-                    <button>
-                        <div class="building-btn-content">
-                            <div class="building-btn-icon">
-                                <h1>CG</h1>
-                            </div>
-                            <div class="identity">
-                                <h1>Cross Guild</h1>
-                                <p>testing</p>
-                            </div>
-                        </div>
-                    </button>
-                </div>
             </div>
             
             <button id="show" class="styled-button">
@@ -99,7 +107,7 @@
         </div>
         
         
-    <script src="../src/map_navigation.js"></script> <!-- Link to JavaScript file -->
+    <script type="module"  src="../src/map_navigation.js"></script> <!-- Link to JavaScript file -->
     <script src="../src/transation.js"></script> <!-- Link to JavaScript file -->
     <script type="module" src="../src/3d.js"></script>
     </body>
