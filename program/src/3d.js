@@ -21,8 +21,9 @@ document.body.appendChild(renderer.domElement);
 
 export const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 200);
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
 camera.position.set(100, 470, -300);
+// camera.up.set(0, 0, -1);
 
 const orbitControls = new OrbitControls(camera, renderer.domElement);
 orbitControls.mouseButtons = {
@@ -34,8 +35,8 @@ orbitControls.enablePan = true;
 // orbitControls.minDistance = 20;
 orbitControls.minDistance = 0;
 orbitControls.maxDistance = 200;
-orbitControls.maxPolarAngle = Math.PI / 2 - 0.05; // prevent camera below ground
-orbitControls.minPolarAngle = Math.PI / 4; // prevent top down view
+// orbitControls.maxPolarAngle = Math.PI / 2 - 0.05; // prevent camera below ground
+// orbitControls.minPolarAngle = Math.PI / 4; // prevent top down view
 orbitControls.update();
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);
@@ -81,8 +82,6 @@ let irtcGroup = new THREE.Group();
 let ripGroup = new THREE.Group();
 let allGroup = new THREE.Group();
 
-let currentFloor = 1;
-let currentBuilding = 'ALL';
 const pathfinding = new Pathfinding();
 const pathfindinghelper = new PathfindingHelper();
 

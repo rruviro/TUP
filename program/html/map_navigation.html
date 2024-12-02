@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Map Navigation</title>
-        <link rel="stylesheet" href="../css/map_navigation.css">
-        <link rel="stylesheet" href="../css/transation.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/map_navigation.css" />
+        <link rel="stylesheet" href="../css/transation.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
         <style>
             .tree {
                 color: white;
@@ -20,17 +19,17 @@
                 margin-bottom: 5px;
             }
             .tree-item .icon {
-            margin-right: 8px;
-        }
-        .tree-item .nested {
-            display: none;
-            margin-left: 20px;
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .tree-item.open > .nested {
-            display: block;
-        }
+                margin-right: 8px;
+            }
+            .tree-item .nested {
+                display: none;
+                margin-left: 20px;
+                list-style-type: none;
+                padding-left: 0;
+            }
+            .tree-item.open > .nested {
+                display: block;
+            }
             .room-button {
                 margin: 5px 0;
                 padding: 5px 10px;
@@ -47,13 +46,12 @@
     </head>
 
     <body class="fade-in">
-
         <div id="sidebar-left">
             <!-- Uncomment the following line to display the logo -->
             <!-- <img src="file://C:/Users/Louise/Documents/TUP/frontend/images/364-3646121_technological-university-of-the-philippines-logo.png" alt="TUP Logo"> -->
             <div class="sidebar-content-left">
-                <img src="../images/364-3646121_technological-university-of-the-philippines-logo.png">
-                
+                <img src="../images/364-3646121_technological-university-of-the-philippines-logo.png" />
+
                 <button id="first_btn">
                     <h1>1st</h1>
                     <p>floor</p>
@@ -70,46 +68,49 @@
                 </button>
             </div>
         </div>
-        
+
         <div id="sidebar-right">
             <div class="sidebar-content-right">
                 <div id="top-navigation">
                     <button id="hide">
-                        <span class="material-icons" style="font-size: 20px;">arrow_forward</span>
+                        <span class="material-icons" style="font-size: 20px">arrow_forward</span>
                     </button>
                     <button id="unknown" onclick="addItem()">
-                        <span class="material-icons" style="font-size: 20px;">help</span>
+                        <span class="material-icons" style="font-size: 20px">help</span>
                     </button>
                     <button id="home" onclick="navigateWithFade('home.html')">
-                        <span class="material-icons" style="font-size: 20px;">home</span>
+                        <span class="material-icons" style="font-size: 20px">home</span>
                     </button>
-                    <input type="text" class="curved-input" placeholder="Enter your text here">
+                    <input type="text" class="curved-input" placeholder="Enter your text here" />
                 </div>
-        
-                <p style="font-size: 13px; color: white;">Buildings</p>
-                
+
+                <p style="font-size: 13px; color: white">Buildings</p>
+
                 <ul id="buildings-tree" class="tree"></ul>
-        
             </div>
-            
+
             <button id="show" class="styled-button">
                 <span class="material-icons">preview</span>
             </button>
 
             <button id="uunknown" class="styled-button" onclick="addItem()">
-                <span class="material-icons" style="font-size: 20px;">help</span>
+                <span class="material-icons" style="font-size: 20px">help</span>
             </button>
 
             <button id="lhome" class="styled-button" onclick="navigateWithFade('home.html')">
-                <span class="material-icons" style="font-size: 20px;">home</span>
+                <span class="material-icons" style="font-size: 20px">home</span>
             </button>
-
         </div>
-        
-        
-    <script type="module"  src="../src/map_navigation.js"></script> <!-- Link to JavaScript file -->
-    <script src="../src/transation.js"></script> <!-- Link to JavaScript file -->
-    <script type="module" src="../src/3d.js"></script>
-    </body>
 
+        <script>
+            let currentFloor = 1;
+            let currentBuilding = 'ALL';
+            let endFloor = 1;
+        </script>
+        <script type="module" src="../src/map_navigation.js"></script>
+        <!-- Link to JavaScript file -->
+        <script src="../src/transation.js"></script>
+        <!-- Link to JavaScript file -->
+        <script type="module" src="../src/3d.js"></script>
+    </body>
 </html>
