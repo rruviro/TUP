@@ -1,3 +1,4 @@
+import { updateAnimation } from './3d';
 import { start, targets } from './const';
 document.getElementById('hide').addEventListener('click', function () {
     // Hide sidebar and its content
@@ -102,7 +103,11 @@ function createTree(targets) {
                 // Optional: Add click event to room button
                 roomButton.addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent collapsing the floor when clicking the button
-                    alert(`You selected ${room} on Floor ${floor} in Building ${building}`);
+                    // alert(`You selected ${room} on Floor ${floor} in Building ${building}`);
+                    endFloor = floor;
+                    endRoom = room;
+                    currentBuilding = building;
+                    updateAnimation();
                 });
 
                 roomItem.appendChild(roomButton);

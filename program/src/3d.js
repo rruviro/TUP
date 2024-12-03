@@ -2,15 +2,47 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Pathfinding, PathfindingHelper } from 'three-pathfinding';
-import { start, targets } from './const';
+import { all, start, targets } from './const';
+const loadingScreen = document.createElement('div');
+loadingScreen.style.position = 'fixed';
+loadingScreen.style.top = '0';
+loadingScreen.style.left = '0';
+loadingScreen.style.width = '100%';
+loadingScreen.style.height = '100%';
+loadingScreen.style.backgroundColor = '#000'; // Black background
+loadingScreen.style.color = '#fff'; // White text
+loadingScreen.style.display = 'flex';
+loadingScreen.style.justifyContent = 'center';
+loadingScreen.style.alignItems = 'center';
+loadingScreen.style.fontSize = '24px';
+loadingScreen.innerText = 'Loading...';
+document.body.appendChild(loadingScreen);
 
+// Loading manager
+const loadingManager = new THREE.LoadingManager();
+
+// Show progress
+loadingManager.onProgress = (url, loaded, total) => {
+    loadingScreen.innerText = `Loading: ${Math.round((loaded / total) * 100)}%`;
+};
+
+// When loading is complete
+loadingManager.onLoad = () => {
+    loadingScreen.style.display = 'none'; // Hide the loading screen
+};
+
+// When an error occurs
+loadingManager.onError = (url) => {
+    console.error(`Error loading ${url}`);
+    loadingScreen.innerText = `Error loading resources.`;
+};
 const floors = ['1ST_FLOOR', '2ND_FLOOR', '3RD_FLOOR', '4TH_FLOOR', '5TH_FLOOR'];
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x000000);
+renderer.setClearColor(0xf4f4f4);
 renderer.setPixelRatio(window.devicePixelRatio);
 
 renderer.shadowMap.enabled = true;
@@ -35,7 +67,7 @@ orbitControls.enablePan = true;
 // orbitControls.minDistance = 20;
 orbitControls.minDistance = 0;
 orbitControls.maxDistance = 200;
-// orbitControls.maxPolarAngle = Math.PI / 2 - 0.05; // prevent camera below ground
+orbitControls.maxPolarAngle = Math.PI / 2 - 0.05; // prevent camera below ground
 // orbitControls.minPolarAngle = Math.PI / 4; // prevent top down view
 orbitControls.update();
 
@@ -86,7 +118,7 @@ const pathfinding = new Pathfinding();
 const pathfindinghelper = new PathfindingHelper();
 
 const ZONE = '1';
-const SPEED = 5;
+const SPEED = 1;
 const navmesh = {
     cap: null,
     cit: null,
@@ -101,7 +133,7 @@ const navmesh = {
 let groupID;
 let navpath;
 
-const loader = new GLTFLoader();
+const loader = new GLTFLoader(loadingManager);
 
 scene.add(pathfindinghelper);
 
@@ -120,8 +152,6 @@ loader.load(
     '../res/CAP BLDG/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
         capGroup.add(model);
     },
     undefined,
@@ -138,8 +168,7 @@ loader.load(
                 navmesh.cap = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
+        model.visible = false;
         capGroup.add(model);
     },
     undefined,
@@ -157,9 +186,7 @@ loader.load(
                 navmesh.cit = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('3RD_FLOOR').visible = false;
+        model.visible = false;
         citGroup.add(model);
     },
     undefined,
@@ -171,9 +198,6 @@ loader.load(
     '../res/CIT/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('3RD_FLOOR').visible = false;
         citGroup.add(model);
     },
     undefined,
@@ -186,10 +210,6 @@ loader.load(
     '../res/COE/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('3RD_FLOOR').visible = false;
-        model.getObjectByName('4TH_FLOOR').visible = false;
         coeGroup.add(model);
     },
     undefined,
@@ -206,10 +226,7 @@ loader.load(
                 navmesh.coe = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('3RD_FLOOR').visible = false;
-        model.getObjectByName('4TH_FLOOR').visible = false;
+        model.visible = false;
         coeGroup.add(model);
     },
     undefined,
@@ -222,10 +239,6 @@ loader.load(
     '../res/COS CLA/model.glb',
     function (gltf) {
         const model = gltf.scene;
-
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        // model.getObjectByName('3RD_FLOOR').visible = false;
         cosGroup.add(model);
     },
     undefined,
@@ -242,10 +255,7 @@ loader.load(
                 navmesh.cos = node.children;
             }
         });
-
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        // model.getObjectByName('3RD_FLOOR').visible = false;
+        model.visible = false;
         cosGroup.add(model);
     },
     undefined,
@@ -258,8 +268,6 @@ loader.load(
     '../res/ESEP/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
         esepGroup.add(model);
     },
     undefined,
@@ -276,8 +284,7 @@ loader.load(
                 navmesh.esep = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
+        model.visible = false;
         esepGroup.add(model);
     },
     undefined,
@@ -290,8 +297,6 @@ loader.load(
     '../res/GAPT/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
         gaptGroup.add(model);
     },
     undefined,
@@ -308,8 +313,7 @@ loader.load(
                 navmesh.gapt = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
+        model.visible = false;
         gaptGroup.add(model);
     },
     undefined,
@@ -322,10 +326,6 @@ loader.load(
     '../res/IRTC/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('4TH_FLOOR').visible = false;
-        model.getObjectByName('5TH_FLOOR').visible = false;
         irtcGroup.add(model);
     },
     undefined,
@@ -342,10 +342,7 @@ loader.load(
                 navmesh.irtc = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('4TH_FLOOR').visible = false;
-        model.getObjectByName('5TH_FLOOR').visible = false;
+        model.visible = false;
         irtcGroup.add(model);
     },
     undefined,
@@ -358,9 +355,6 @@ loader.load(
     '../res/RIPALDA/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('3RD_FLOOR').visible = false;
         ripGroup.add(model);
     },
     undefined,
@@ -377,9 +371,7 @@ loader.load(
                 navmesh.rip = node.children;
             }
         });
-        model.getObjectByName('1ST_FLOOR').visible = false;
-        model.getObjectByName('2ND_FLOOR').visible = false;
-        model.getObjectByName('3RD_FLOOR').visible = false;
+        model.visible = false;
         ripGroup.add(model);
     },
     undefined,
@@ -392,8 +384,6 @@ loader.load(
     '../res/TUP MAP/model.glb',
     function (gltf) {
         const model = gltf.scene;
-        // model.getObjectByName('1ST_FLOOR').visible = false;
-        // model.getObjectByName('2ND_FLOOR').visible = false;
         allGroup.add(model);
     },
     undefined,
@@ -410,6 +400,7 @@ loader.load(
                 navmesh.all = node.children;
             }
         });
+        model.visible = false;
         allGroup.add(model);
     },
     undefined,
@@ -515,11 +506,168 @@ const agentRadius = 0.1;
 const agent = new THREE.Mesh(new THREE.CylinderGeometry(agentRadius, agentRadius, agentHeight), new THREE.MeshPhongMaterial({ color: 'green' }));
 agent.position.y = agentHeight / 2;
 const agentGroup = new THREE.Group();
+const agentSize = Math.max(agentGroup.scale.x, agentGroup.scale.z);
+const margin = agentSize * 0.5;
 
 agentGroup.add(agent);
+export async function updateAnimation() {
+    showModel('ALL');
+    await moveToBuilding('ALL', currentBuilding);
+    showModel(currentBuilding);
+    const keysArray = Object.keys(start[currentBuilding]);
+    const count = keysArray.length;
+    for (let t = 0; t < count; t++) {
+        scene.getObjectByName(floors[t] + currentBuilding).visible = false;
+    }
+    for (let i = 1; i <= endFloor; i++) {
+        await moveToTarget(i); // Wait for the agent to reach the target for each floor
+    }
+    currentFloor = 1;
+    currentBuilding = 'ALL';
+    endFloor = 1;
+    endRoom = 1;
+}
 
-agentGroup.position.set(start[currentBuilding][currentFloor].x, start[currentBuilding][currentFloor].y, start[currentBuilding][currentFloor].z);
+async function moveToBuilding(curBuilding, to) {
+    return new Promise((resolve) => {
+        // Validate inputs
+        if (!start[curBuilding] || !navmesh[curBuilding.toLowerCase()] || !all[to]) {
+            console.error('Invalid inputs for moveToBuilding.');
+            resolve();
+            return;
+        }
 
+        // Set agent's starting position
+        agentGroup.position.set(start[curBuilding][1].x, start[curBuilding][1].y, start[curBuilding][1].z);
+
+        // Set pathfinding zone data
+        pathfinding.setZoneData(ZONE, Pathfinding.createZone(navmesh[curBuilding.toLowerCase()][0].geometry));
+
+        // Determine target
+        let target = all[to];
+
+        const agentpos = agentGroup.position;
+        groupID = pathfinding.getGroup(ZONE, agentGroup.position);
+
+        // Find closest nodes for the agent and target
+        const clampedAgentPosition = pathfinding.getClosestNode(agentGroup.position, ZONE, groupID)?.centroid || agentGroup.position;
+        const clampedTargetPosition = pathfinding.getClosestNode(target, ZONE, groupID)?.centroid || target;
+
+        // Compute the navigation path
+        navpath = pathfinding.findPath(clampedAgentPosition, clampedTargetPosition, ZONE, groupID);
+
+        if (navpath) {
+            // Pathfinding helper
+            pathfindinghelper.reset();
+            pathfindinghelper.setPlayerPosition(agentpos);
+            pathfindinghelper.setTargetPosition(target);
+            pathfindinghelper.setPath(navpath);
+
+            // Animate the agent movement
+            const clock = new THREE.Clock();
+            function animateMovement() {
+                const delta = clock.getDelta();
+
+                if (!navpath || navpath.length === 0) {
+                    resolve(); // Resolve the promise when movement is complete
+                    return;
+                }
+
+                const targetPosition = navpath[0];
+                const distance = targetPosition.clone().sub(agentGroup.position);
+
+                if (distance.length() > 0.01) {
+                    // Smooth movement using lerp
+                    agentGroup.position.lerp(targetPosition, delta * SPEED);
+                } else {
+                    navpath.shift(); // Remove the reached node from the path
+                }
+
+                requestAnimationFrame(animateMovement);
+            }
+            animateMovement();
+        } else {
+            resolve(); // Resolve immediately if no path is found
+        }
+    });
+}
+
+async function moveToTarget(floor) {
+    return new Promise((resolve) => {
+        // Make the current floor visible
+        const curFloor = scene.getObjectByName(floors[floor - 1] + currentBuilding);
+        curFloor.visible = true;
+
+        // Set agent's starting position
+        agentGroup.position.set(start[currentBuilding][floor].x, start[currentBuilding][floor].y, start[currentBuilding][floor].z);
+
+        // Set pathfinding zone data
+        pathfinding.setZoneData(ZONE, Pathfinding.createZone(navmesh[currentBuilding.toLowerCase()][floor - 1].geometry));
+
+        // Determine target
+        let target;
+        if (floor !== parseInt(endFloor)) {
+            target = targets[currentBuilding][floor].STAIRS; // Next stairs if not the last floor
+        } else {
+            target = targets[currentBuilding][floor][endRoom]; // Final room for the last floor
+        }
+
+        const agentpos = agentGroup.position;
+        groupID = pathfinding.getGroup(ZONE, agentGroup.position);
+
+        // Find closest nodes for the agent and target
+        const clampedAgentPosition = pathfinding.getClosestNode(agentGroup.position, ZONE, groupID)?.centroid || agentGroup.position;
+        const clampedTargetPosition = pathfinding.getClosestNode(target, ZONE, groupID)?.centroid || target;
+
+        // Compute the navigation path
+        navpath = pathfinding.findPath(clampedAgentPosition, clampedTargetPosition, ZONE, groupID);
+
+        if (navpath) {
+            pathfindinghelper.reset();
+            pathfindinghelper.setPlayerPosition(agentpos);
+            pathfindinghelper.setTargetPosition(target);
+            pathfindinghelper.setPath(navpath);
+
+            // Animate the agent movement
+            const clock = new THREE.Clock();
+            function animateMovement() {
+                const delta = clock.getDelta();
+
+                if (!navpath || navpath.length <= 0) {
+                    if (floor !== parseInt(endFloor)) {
+                        curFloor.visible = false; // Hide the current floor
+                    } else {
+                        // Show custom modal when agent reaches the final room
+                        showModal(`Agent has reached the final room: ${endRoom} on floor ${floor}`, () => {
+                            showModel('ALL');
+                        });
+                    }
+
+                    resolve(); // Resolve the promise when movement is complete
+                    return;
+                }
+
+                const targetPosition = navpath[0];
+                const distance = targetPosition.clone().sub(agentGroup.position);
+
+                if (distance.lengthSq() > 0.01 * 0.01) {
+                    distance.normalize();
+                    // Move agent towards target
+                    agentGroup.position.add(distance.multiplyScalar(delta * SPEED));
+                } else {
+                    navpath.shift(); // Remove the reached node from the path
+                }
+
+                // Continue animation
+                requestAnimationFrame(animateMovement);
+            }
+            animateMovement();
+        } else {
+            curFloor.visible = false; // Hide the current floor if no path is found
+            resolve(); // Resolve immediately if no path is found
+        }
+    });
+}
 scene.add(agentGroup);
 showModel(currentBuilding);
 
@@ -530,36 +678,6 @@ function intersect(pos) {
     raycaster.setFromCamera(pos, camera);
     return raycaster.intersectObjects([navmesh[currentBuilding.toLowerCase()][currentFloor - 1]]);
 }
-window.addEventListener('click', (event) => {
-    // THREE RAYCASTER
-    clickMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    clickMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    pathfinding.setZoneData(ZONE, Pathfinding.createZone(navmesh[currentBuilding.toLowerCase()][currentFloor - 1].geometry));
-    const found = intersect(clickMouse);
-    if (found.length > 0) {
-        // let target = targets.CIT[1].ROOM1;
-        let target = found[0].point;
-        const agentpos = agentGroup.position;
-        // console.log(`agentpos: ${JSON.stringify(agentpos)}`);
-        console.log(`target: ${JSON.stringify(target)}`);
-
-        groupID = pathfinding.getGroup(ZONE, agentGroup.position);
-        // console.log('Zone Data:', groupID);
-        // find closest node to agent, just in case agent is out of bounds
-        const clampedAgentPosition = pathfinding.getClosestNode(agentGroup.position, ZONE, groupID)?.centroid || agentGroup.position;
-        const clampedTargetPosition = pathfinding.getClosestNode(target, ZONE, groupID)?.centroid || target;
-
-        navpath = pathfinding.findPath(clampedAgentPosition, clampedTargetPosition, ZONE, groupID);
-        if (navpath) {
-            pathfindinghelper.reset();
-            pathfindinghelper.setPlayerPosition(agentpos);
-            pathfindinghelper.setTargetPosition(target);
-            pathfindinghelper.setPath(navpath);
-        }
-    }
-});
-
 // MOVEMENT ALONG PATH
 function move(delta) {
     if (!navpath || navpath.length <= 0) return;
@@ -607,3 +725,52 @@ animate();
 // // Axes Helper
 // const axesHelper = new THREE.AxesHelper(size / 2); // Adds X, Y, Z axes
 // scene.add(axesHelper);
+
+function showModal(message, callback) {
+    // Create modal container
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    modal.style.display = 'flex';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '9999';
+    modal.style.color = '#fff';
+    modal.style.fontSize = '24px';
+
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.style.backgroundColor = '#222';
+    modalContent.style.padding = '20px';
+    modalContent.style.borderRadius = '10px';
+    modalContent.style.textAlign = 'center';
+
+    const modalMessage = document.createElement('p');
+    modalMessage.textContent = message;
+
+    const okButton = document.createElement('button');
+    okButton.textContent = 'OK';
+    okButton.style.marginTop = '10px';
+    okButton.style.padding = '10px 20px';
+    okButton.style.border = 'none';
+    okButton.style.borderRadius = '5px';
+    okButton.style.backgroundColor = '#0d6efd';
+    okButton.style.color = '#fff';
+    okButton.style.cursor = 'pointer';
+
+    // Close modal on OK button click and execute callback
+    okButton.addEventListener('click', () => {
+        document.body.removeChild(modal); // Remove modal from the DOM
+        if (callback) callback(); // Execute the callback if provided
+    });
+
+    // Append content to modal and modal to body
+    modalContent.appendChild(modalMessage);
+    modalContent.appendChild(okButton);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+}
