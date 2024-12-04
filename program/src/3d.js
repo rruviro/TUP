@@ -640,6 +640,8 @@ async function moveToTarget(floor) {
                         // Show custom modal when agent reaches the final room
                         showModal(`Agent has reached the final room: ${endRoom} on floor ${floor}`, () => {
                             showModel('ALL');
+                            agentGroup.position.set(start['ALL'][1].x, start['ALL'][1].y, start['ALL'][1].z);
+                            pathfindinghelper.reset();
                         });
                     }
 
@@ -726,7 +728,7 @@ animate();
 // const axesHelper = new THREE.AxesHelper(size / 2); // Adds X, Y, Z axes
 // scene.add(axesHelper);
 
-function showModal(message, callback) {
+function showModal(message, okCallback) {
     // Create modal container
     const modal = document.createElement('div');
     modal.style.position = 'fixed';
@@ -752,9 +754,11 @@ function showModal(message, callback) {
     const modalMessage = document.createElement('p');
     modalMessage.textContent = message;
 
+    // OK Button
     const okButton = document.createElement('button');
-    okButton.textContent = 'OK';
+    okButton.textContent = 'Reset'; // RENAME
     okButton.style.marginTop = '10px';
+    okButton.style.marginRight = '10px';
     okButton.style.padding = '10px 20px';
     okButton.style.border = 'none';
     okButton.style.borderRadius = '5px';
@@ -762,15 +766,32 @@ function showModal(message, callback) {
     okButton.style.color = '#fff';
     okButton.style.cursor = 'pointer';
 
-    // Close modal on OK button click and execute callback
+    // Cancel Button
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Stay'; // RENAME
+    cancelButton.style.marginTop = '10px';
+    cancelButton.style.padding = '10px 20px';
+    cancelButton.style.border = 'none';
+    cancelButton.style.borderRadius = '5px';
+    cancelButton.style.backgroundColor = '#dc3545';
+    cancelButton.style.color = '#fff';
+    cancelButton.style.cursor = 'pointer';
+
+    // Close modal on OK button click and execute OK callback
     okButton.addEventListener('click', () => {
         document.body.removeChild(modal); // Remove modal from the DOM
-        if (callback) callback(); // Execute the callback if provided
+        if (okCallback) okCallback(); // Execute the OK callback if provided
+    });
+
+    // Close modal on Cancel button click
+    cancelButton.addEventListener('click', () => {
+        document.body.removeChild(modal); // Simply close the modal
     });
 
     // Append content to modal and modal to body
     modalContent.appendChild(modalMessage);
     modalContent.appendChild(okButton);
+    modalContent.appendChild(cancelButton);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 }

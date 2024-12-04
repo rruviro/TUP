@@ -42,10 +42,13 @@ if (!document.querySelector('.sidebar-content-right').classList.contains('hidden
     document.getElementById('uunknown').style.display = 'inline'; // Show "uunknown" button
     document.getElementById('lhome').style.display = 'inline'; // Show "lhome" button
 }
-function createTree(targets) {
+function createTree(targets, query = '') {
     const treeContainer = document.getElementById('buildings-tree');
+    treeContainer.innerHTML = ''; // Clear the tree container
 
     Object.keys(targets).forEach((building) => {
+        let buildingMatches = false;
+
         // Create building item
         const buildingItem = document.createElement('li');
         buildingItem.className = 'tree-item';
@@ -70,6 +73,8 @@ function createTree(targets) {
         floorsList.className = 'nested floor-list';
 
         Object.keys(targets[building]).forEach((floor) => {
+            let floorMatches = false;
+
             const floorItem = document.createElement('li');
             floorItem.className = 'tree-item';
 
@@ -95,32 +100,45 @@ function createTree(targets) {
             roomsList.className = 'nested';
 
             Object.keys(targets[building][floor]).forEach((room) => {
-                const roomItem = document.createElement('li');
-                const roomButton = document.createElement('button');
-                roomButton.className = 'room-button';
-                roomButton.innerText = room;
+                if (room.toLowerCase().includes(query.toLowerCase())) {
+                    floorMatches = true;
+                    buildingMatches = true;
 
-                // Optional: Add click event to room button
-                roomButton.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent collapsing the floor when clicking the button
-                    // alert(`You selected ${room} on Floor ${floor} in Building ${building}`);
-                    endFloor = floor;
-                    endRoom = room;
-                    currentBuilding = building;
-                    updateAnimation();
-                });
+                    const roomItem = document.createElement('li');
+                    const roomButton = document.createElement('button');
+                    roomButton.className = 'room-button';
+                    roomButton.innerText = room;
 
-                roomItem.appendChild(roomButton);
-                roomsList.appendChild(roomItem);
+                    // Optional: Add click event to room button
+                    roomButton.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent collapsing the floor when clicking the button
+                        endFloor = floor;
+                        endRoom = room;
+                        currentBuilding = building;
+                        updateAnimation();
+                    });
+
+                    roomItem.appendChild(roomButton);
+                    roomsList.appendChild(roomItem);
+                }
             });
 
-            floorItem.appendChild(roomsList);
-            floorsList.appendChild(floorItem);
+            if (floorMatches) {
+                floorItem.appendChild(roomsList);
+                floorsList.appendChild(floorItem);
+            }
         });
 
-        buildingItem.appendChild(floorsList);
-        treeContainer.appendChild(buildingItem);
+        if (buildingMatches) {
+            buildingItem.appendChild(floorsList);
+            treeContainer.appendChild(buildingItem);
+        }
     });
 }
 
 createTree(targets);
+
+document.getElementById('search-input').addEventListener('input', (event) => {
+    const query = event.target.value.trim();
+    createTree(targets, query); // Recreate the tree with the search query
+});

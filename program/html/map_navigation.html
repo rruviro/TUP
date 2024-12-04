@@ -53,11 +53,36 @@
             .sidebar-content-right{
                 height: 80%;
             } */
-            .tree{
-                height: 50%;
-                overflow-y: scroll;
+            /* #buildings-tree{
+                 height: 50%; 
+                overflow-y: auto;
                 overflow-x: hidden;
-            }
+            } */
+            #sidebar-right {
+    position: fixed; /* Ensures the sidebar stays in place */
+    top: 0;
+    right: 0;
+    width: 300px; /* Adjust the width as needed */
+    height: 100%; /* Full height of the viewport */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent overflowing content outside the sidebar */
+}
+
+.sidebar-content-right {
+    flex: 1; /* Ensures it takes available space */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    padding: 10px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Ensures padding is included in width/height calculations */
+}
+
+.tree {
+    padding-left: 10px;
+    margin: 0;
+    list-style: none;
+    padding-bottom: 20px; /* Add extra space at the bottom */
+}
         </style>
     </head>
 
@@ -95,22 +120,27 @@
                     <button id="home" onclick="navigateWithFade('home.html')">
                         <span class="material-icons" style="font-size: 20px">home</span>
                     </button>
-                    <!-- <input type="text" class="curved-input" placeholder="Enter your text here" /> -->
+                    <input
+                        type="text"
+                        class="curved-input"
+                        id="search-input"
+                        placeholder="Enter your text here"
+                    />
                 </div>
-
+        
                 <p style="font-size: 13px; color: white">Buildings</p>
-
+        
                 <ul id="buildings-tree" class="tree"></ul>
             </div>
-
+        
             <button id="show" class="styled-button">
                 <span class="material-icons">preview</span>
             </button>
-
+        
             <button id="uunknown" class="styled-button" onclick="addItem()">
                 <span class="material-icons" style="font-size: 20px">help</span>
             </button>
-
+        
             <button id="lhome" class="styled-button" onclick="navigateWithFade('home.html')">
                 <span class="material-icons" style="font-size: 20px">home</span>
             </button>
