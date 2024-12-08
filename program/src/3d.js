@@ -112,6 +112,7 @@ let esepGroup = new THREE.Group();
 let gaptGroup = new THREE.Group();
 let irtcGroup = new THREE.Group();
 let ripGroup = new THREE.Group();
+let cafaGroup = new THREE.Group();
 let allGroup = new THREE.Group();
 
 const pathfinding = new Pathfinding();
@@ -128,6 +129,7 @@ const navmesh = {
     gapt: null,
     irtc: null,
     rip: null,
+    cafa: null,
     all: null,
 };
 let groupID;
@@ -145,6 +147,7 @@ scene.add(esepGroup);
 scene.add(gaptGroup);
 scene.add(irtcGroup);
 scene.add(ripGroup);
+scene.add(cafaGroup);
 scene.add(allGroup);
 
 // CAP MODEL
@@ -379,6 +382,35 @@ loader.load(
         console.error(error);
     }
 );
+// CAFA MODEL
+loader.load(
+    '../res/CAFA/model.glb',
+    function (gltf) {
+        const model = gltf.scene;
+        cafaGroup.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
+loader.load(
+    '../res/CAFA/nav.glb',
+    function (gltf) {
+        const model = gltf.scene;
+        model.traverse((node) => {
+            if (node.isObject3D && node.children && node.children.length > 0) {
+                navmesh.cafa = node.children;
+            }
+        });
+        model.visible = false;
+        cafaGroup.add(model);
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
 // TUP MODEL
 loader.load(
     '../res/TUP MAP/model.glb',
@@ -418,6 +450,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'CIT') {
         capGroup.visible = false;
@@ -428,6 +461,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'COE') {
         capGroup.visible = false;
@@ -438,6 +472,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'COS') {
         capGroup.visible = false;
@@ -448,6 +483,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'ESEP') {
         capGroup.visible = false;
@@ -458,6 +494,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'GAPT') {
         capGroup.visible = false;
@@ -468,6 +505,7 @@ export function showModel(model) {
         gaptGroup.visible = true;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'IRTC') {
         capGroup.visible = false;
@@ -478,6 +516,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = true;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = false;
     } else if (model === 'RIP') {
         capGroup.visible = false;
@@ -488,6 +527,18 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = true;
+        cafaGroup.visible = false;
+        allGroup.visible = false;
+    } else if (model === 'CAFA') {
+        capGroup.visible = false;
+        citGroup.visible = false;
+        coeGroup.visible = false;
+        cosGroup.visible = false;
+        esepGroup.visible = false;
+        gaptGroup.visible = false;
+        irtcGroup.visible = false;
+        ripGroup.visible = false;
+        cafaGroup.visible = true;
         allGroup.visible = false;
     } else {
         capGroup.visible = false;
@@ -498,6 +549,7 @@ export function showModel(model) {
         gaptGroup.visible = false;
         irtcGroup.visible = false;
         ripGroup.visible = false;
+        cafaGroup.visible = false;
         allGroup.visible = true;
     }
 }

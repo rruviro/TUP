@@ -57,7 +57,7 @@ function createTree(targets, query = '') {
         buildingIcon.innerText = '▼ ';
 
         const buildingText = document.createElement('span');
-        buildingText.innerText = `Building: ${building === 'RIP' ? 'RIPALDA' : building === 'COS' ? 'COS - CLA' : building}`;
+        buildingText.innerText = `Building: ${building === 'RIP' ? 'RIPALDA' : building === 'COS' ? 'COS - CLA' : building === 'CAFA' ? 'CAFA - CIE' : building}`;
 
         buildingItem.appendChild(buildingIcon);
         buildingItem.appendChild(buildingText);
